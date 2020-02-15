@@ -1,0 +1,83 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Pokemon server.",
+        "version": "1.0.0",
+        "title": "Pokemon Team Builder"
+    },
+    "tags": [
+        {
+            "name": "pokemon",
+            "description": "Everything about Pokemon"
+        }
+    ],
+    "schemes": ["http"],
+    "paths": {
+        "/pokemon": {
+            "get": {
+                "tags": ["pokemon"],
+                "summary": "Get all pokemon",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Pokemon"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pokemon/{id}": {
+            "get": {
+                "tags": ["pokemon"],
+                "summary": "Get Pokemon by id",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Pokemon to return",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Pokemon": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "pokedex_id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "trainer_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
